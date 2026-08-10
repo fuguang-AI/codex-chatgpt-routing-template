@@ -1,0 +1,40 @@
+schema_version: 1
+
+routing:
+  enabled: true
+  local_only_when_eligibility_unknown: true
+  split_mixed_tasks: true
+  prevent_duplicate_execution: true
+
+capabilities:
+  eligibility_check: eligibility_check
+  open_web_chat: open_web_chat
+  submit_web_task: submit_web_task
+  read_web_status: read_web_status
+  read_web_result: read_web_result
+
+monitoring:
+  silent: true
+  sparse: true
+  max_explicit_retries: 1
+  queued_is_failure: false
+
+privacy:
+  public_context_only: true
+  minimize_payload: true
+  redact_before_handoff: true
+  prohibit_credentials: true
+  prohibit_session_data: true
+  prohibit_personal_data: true
+  prohibit_unpublished_material: true
+  prohibit_complete_private_code: true
+
+confirmation_required_for:
+  - sign_in
+  - switch_account
+  - verification_challenge
+  - paid_action
+  - subscription_change
+  - private_file_upload
+  - public_publish
+
