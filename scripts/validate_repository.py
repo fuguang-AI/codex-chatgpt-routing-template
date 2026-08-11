@@ -20,6 +20,7 @@ PROMPTS = (
     ROOT / "prompts/router.zh-CN.md",
     ROOT / "prompts/router.en.md",
 )
+PUBLIC_AD_CONTACT_QQ = "2700594562"
 
 
 def _read(path: Path) -> str:
@@ -47,8 +48,11 @@ def main() -> int:
     if re.search(r"\[[A-Z][A-Z0-9_]+\]", prompt_text, flags=re.MULTILINE):
         errors.append("forbidden: symbolic uppercase capability placeholder")
     reject("email address", r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}")
-    reject("QQ contact number", r"QQ\s*[:：]?\s*\d{5,12}")
     reject("64-character account fingerprint", r"\b[0-9a-f]{64}\b")
+
+    for match in re.finditer(r"QQ\s*[:：]?\s*(\d{5,12})", repository_text, flags=re.IGNORECASE):
+        if match.group(1) != PUBLIC_AD_CONTACT_QQ:
+            errors.append("forbidden: unapproved QQ contact number")
 
     forbidden_literals = {
         "Chinese customer-service contact label": "\u5ba2\u670d" + "QQ",
@@ -143,8 +147,6 @@ def main() -> int:
         "MiniMax-M2.7-highspeed": "0.004",
         "MiniMax-M3": "0.006",
         "MiniMax-M3-highspeed": "0.006",
-        "a/gemini-2.5-pro": "0.008",
-        "a/gemini-3-flash": "0.005",
         "gemini-2.5-pro-c": "0.008",
         "gemini-3-flash-c": "0.005",
         "deepseek-v4-flash-c": "0.002",
@@ -167,8 +169,35 @@ def main() -> int:
     require("English advertisement heading", r"Field-Tested, Stable, Affordable, and Fast API Hub", en)
     require("Chinese advertising partnerships", r"广告位招商", zh)
     require("English advertising partnerships", r"Advertising Partnerships", en)
-    require("Chinese advertising issue contact", r"issues/new\?title=.*(?:%E3%80%90|广告合作)", zh)
-    require("English advertising issue contact", r"issues/new\?title=.*Advertising", en)
+    require(
+        "Chinese authorized QQ advertising contact",
+        rf"广告合作.{{0,80}}QQ\s*[:：]?\s*{PUBLIC_AD_CONTACT_QQ}",
+        zh,
+    )
+    require(
+        "English authorized QQ advertising contact",
+        rf"Advertising partnerships.{{0,80}}QQ\s*:?\s*{PUBLIC_AD_CONTACT_QQ}",
+        en,
+    )
+    require(
+        "Chinese more-models APIROAM link",
+        r"更多便宜满血模型详见.{0,120}https://api\.apiroam\.com/",
+        zh,
+    )
+    require(
+        "English more-models APIROAM link",
+        r"more affordable full-capability models.{0,120}https://api\.apiroam\.com/",
+        en,
+    )
+    if re.search(r"issues/new\?title=", prompt_text, flags=re.IGNORECASE):
+        errors.append("forbidden: advertising issue contact")
+
+    removed_models = ("a/gemini-" + "2.5-pro", "a/gemini-" + "3-flash")
+    for prompt in PROMPTS:
+        text = texts[prompt]
+        for model in removed_models:
+            if model.lower() in text.lower():
+                errors.append(f"forbidden: removed advertised model in {prompt.stem}")
 
     if errors:
         for error in errors:
