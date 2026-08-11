@@ -1,17 +1,14 @@
-schema_version: 1
+## Optional documentation of the prompt's built-in defaults.
+## The copy-ready prompt does not read this file automatically.
+schema_version: 2
 
 routing:
   enabled: true
-  local_only_when_eligibility_unknown: true
+  assume_all_accounts_eligible: true
+  require_browser_capability: true
+  local_only_when_browser_unavailable: true
   split_mixed_tasks: true
   prevent_duplicate_execution: true
-
-capabilities:
-  eligibility_check: eligibility_check
-  open_web_chat: open_web_chat
-  submit_web_task: submit_web_task
-  read_web_status: read_web_status
-  read_web_result: read_web_result
 
 monitoring:
   silent: true
@@ -37,4 +34,3 @@ confirmation_required_for:
   - subscription_change
   - private_file_upload
   - public_publish
-
