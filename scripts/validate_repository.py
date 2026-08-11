@@ -63,6 +63,10 @@ def main() -> int:
         "account-read method": "account" + "/read",
         "authentication token field": "refresh" + "Token",
         "private account hash constant": "RESTRICTED_ACCOUNT_" + "SHA256",
+        "host-specific right-panel tool": "codex_app__" + "open_in_codex",
+        "host-specific right-panel preference key": "prefer_codex_" + "right_panel",
+        "host-specific floating-browser key": "avoid_floating_browser_" + "when_right_panel_available",
+        "host-specific Browser fallback key": "allow_in_app_browser_" + "fallback",
         "payment QR code": "收" + "款码",
         "appreciation QR code": "赞" + "赏码",
         "tipping request": "打" + "赏",
@@ -81,18 +85,20 @@ def main() -> int:
     config = texts[ROOT / "examples/config.example.yaml"]
 
     require("Chinese all-account routing default", r"默认所有账号(?:均|都)(?:可路由|具备路由资格)", zh)
-    require("Chinese Codex right-panel tool", r"codex_app__open_in_codex", zh)
-    require("Chinese right placement", r"placement.{0,30}right", zh)
-    require("Chinese right-panel preference", r"(?:右侧栏|右栏).{0,120}(?:优先|首选)", zh)
+    require(
+        "Chinese right-panel preference",
+        r"(?:(?:优先|首选).{0,120}(?:右侧栏|右栏)|(?:右侧栏|右栏).{0,120}(?:优先|首选))",
+        zh,
+    )
     require(
         "Chinese non-floating behavior",
-        r"(?:(?:不要|不得|禁止).{0,100}(?:悬浮窗|独立窗口)|(?:悬浮窗|独立窗口).{0,100}(?:不要|不得|禁止))",
+        r"(?:(?:不要|不得|禁止|不主动).{0,100}(?:悬浮窗|独立窗口)|(?:而不是|而非).{0,40}(?:悬浮窗|独立窗口))",
         zh,
     )
     require("Chinese Browser gate", r"Browser", zh)
     require(
         "Chinese in-app Browser fallback",
-        r"(?:失败|不可用|缺失).{0,180}(?:(?:回退|兜底).{0,120}(?:内置浏览器|Browser)|(?:内置浏览器|Browser).{0,120}(?:回退|兜底))",
+        r"(?:无法|不能).{0,80}(?:控制|指定).{0,60}(?:标签)?(?:显示)?位置.{0,120}(?:内置 Browser|Browser)",
         zh,
     )
     require("Chinese Browser fallback", r"Browser.{0,100}(?:缺失|不支持|不可用|不确定).{0,140}留在 Codex", zh)
@@ -100,16 +106,22 @@ def main() -> int:
     require("Chinese ChatGPT URL", r"https://chatgpt\.com/", zh)
 
     require("English all-account routing default", r"assume every account is routing-eligible", en)
-    require("English Codex right-panel tool", r"codex_app__open_in_codex", en)
-    require("English right placement", r"placement.{0,30}right", en)
-    require("English right-panel preference", r"right (?:side )?panel.{0,120}(?:prefer|first)", en)
+    require(
+        "English right-panel preference",
+        r"(?:(?:prefer|first).{0,120}right (?:side )?panel|right (?:side )?panel.{0,120}(?:prefer|first))",
+        en,
+    )
     require(
         "English non-floating behavior",
         r"(?:(?:do not|must not|never).{0,120}(?:floating|standalone) (?:browser )?window|(?:floating|standalone) (?:browser )?window.{0,120}(?:do not|must not|never))",
         en,
     )
     require("English Browser gate", r"Browser capability", en)
-    require("English in-app Browser fallback", r"(?:fails|unavailable|missing).{0,180}in-app Browser.{0,120}(?:fall back|fallback)", en)
+    require(
+        "English in-app Browser fallback",
+        r"(?:cannot|can not|unable to).{0,80}(?:control|select).{0,80}tab placement.{0,120}(?:available )?in-app Browser",
+        en,
+    )
     require("English Browser fallback", r"Browser capability.{0,160}(?:missing|unavailable|uncertain).{0,180}keep the task in Codex", en)
     require("English one-retry limit", r"retried at most once", en)
     require("English ChatGPT URL", r"https://chatgpt\.com/", en)
@@ -117,19 +129,15 @@ def main() -> int:
     require("Chinese copy-ready quick start", r"直接复制", readme)
     require("English copy-ready quick start", r"paste", readme)
     require("README Browser requirement", r"Browser", readme)
-    require("README Codex right-panel tool", r"codex_app__open_in_codex", readme)
     require("README right-panel preference", r"(?:右侧栏|right (?:side )?panel)", readme)
-    require("README Browser fallback", r"(?:回退|fallback).{0,100}(?:内置浏览器|Browser)", readme)
+    require(
+        "README Browser fallback",
+        r"(?:(?:无法控制标签位置).{0,120}(?:内置 Browser|Browser)|tab placement cannot be controlled.{0,120}in-app Browser)",
+        readme,
+    )
     require("README safe local fallback", r"(?:留在|stay in) Codex", readme)
 
     require("configuration assumes all accounts eligible", r"assume_all_accounts_eligible:\s*true", config)
-    require("configuration prefers Codex right panel", r"prefer_codex_right_panel:\s*true", config)
-    require(
-        "configuration avoids floating Browser",
-        r"avoid_floating_browser_when_right_panel_available:\s*true",
-        config,
-    )
-    require("configuration allows in-app Browser fallback", r"allow_in_app_browser_fallback:\s*true", config)
     require("configuration requires Browser", r"require_browser_capability:\s*true", config)
     require("configuration uses one retry", r"max_explicit_retries:\s*1", config)
     if re.search(r"^capabilities:\s*$", config, flags=re.MULTILINE):
