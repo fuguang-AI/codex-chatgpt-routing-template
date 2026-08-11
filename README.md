@@ -5,7 +5,7 @@ A privacy-conscious bilingual prompt template for deciding whether work should s
 一套注重隐私的中英文提示词模板，用于自动判断任务应留在 Codex、转交 ChatGPT 网页端，还是拆分后分别处理。
 
 > [!IMPORTANT]
-> This repository provides copy-ready routing prompts and an optional defaults example. It does not install Browser control or authentication. The public template assumes every account is routing-eligible, prefers ChatGPT in the Codex right side panel through `codex_app__open_in_codex`, and falls back to the ordinary in-app Browser only when that panel capability is unavailable.
+> This repository provides copy-ready routing prompts and an optional defaults example. It does not install Browser control or authentication. The public template assumes every account is routing-eligible and delegates only when the current Codex host already provides usable Browser control. When the interface supports tab placement, it prefers ChatGPT in the Codex right side panel instead of a floating browser window.
 
 ## Why this exists / 项目目标
 
@@ -42,12 +42,12 @@ flowchart TD
 
 1. Choose a language and paste the complete prompt directly into Codex personalization, project instructions, or `AGENTS.md`.
 2. No placeholder replacement, account checker, or private configuration is required.
-3. For automatic delegation, use a Codex host that exposes Browser control. The prompt prefers `codex_app__open_in_codex` with `placement: "right"`; if that interface is unavailable, it can fall back to the ordinary in-app Browser. Without usable Browser control, tasks safely stay in Codex.
+3. For automatic delegation, use a Codex host that exposes Browser control. The prompt prefers a ChatGPT tab in the Codex right side panel; when tab placement cannot be controlled, it continues with the available in-app Browser. Without usable Browser control, tasks safely stay in Codex.
 4. Test with non-sensitive sample tasks before using the router with real work.
 
 1. 选择中文或英文版本，将完整提示词直接复制到 Codex 个性化指令、项目指令或 `AGENTS.md`。
 2. 无需替换占位符，无需账号检查器，也无需安装私有配置。
-3. 若要自动转交 ChatGPT 网页端，当前 Codex 宿主必须已经提供 Browser 控制。提示词会优先调用 `codex_app__open_in_codex`，以 `placement: "right"` 打开 Codex 右侧栏；界面能力不可用时才回退到普通内置 Browser。没有可用 Browser 控制时，任务会安全留在 Codex。
+3. 若要自动转交 ChatGPT 网页端，当前 Codex 宿主必须已经提供 Browser 控制。提示词会优先使用 Codex 应用右侧栏中的 ChatGPT 标签；无法控制标签位置时，继续使用现有内置 Browser。没有可用 Browser 控制时，任务会安全留在 Codex。
 4. 先用无敏感信息的示例任务测试，再用于真实工作。
 
 `examples/config.example.yaml` only documents the prompt's defaults. The pasted prompt does not read it automatically, and normal use does not require copying or editing it. Never put secrets in that file.
@@ -66,8 +66,8 @@ flowchart TD
 ## Safety defaults / 安全默认值
 
 - Assume every account is routing-eligible; do not inspect account identity, plan, or quota.
-- Prefer the Codex right side panel and avoid a floating or standalone browser window when `codex_app__open_in_codex` is available.
-- If the right-panel interface is unavailable, fall back to the ordinary in-app Browser without expanding permissions.
+- Prefer a ChatGPT tab in the Codex right side panel and avoid a floating or standalone browser window when the interface supports that placement.
+- If tab placement cannot be controlled, continue with the available in-app Browser without expanding permissions.
 - Keep work local when Browser control is missing, unavailable, or uncertain.
 - Send only the minimum sanitized context required for the delegated task.
 - Never send credentials, session data, personal information, unpublished material, or complete private code.
@@ -78,7 +78,7 @@ flowchart TD
 ## Limitations / 局限
 
 - A prompt cannot create missing Browser-control capabilities.
-- `codex_app__open_in_codex` is host-specific. Its absence does not imply an account problem; it only activates the in-app Browser fallback.
+- Not every Codex host can control browser-tab placement. This affects only presentation and does not change routing eligibility.
 - This public template intentionally performs no account-entitlement check. Users are responsible for confirming that their current product access and usage rules permit the intended route.
 - ChatGPT and Codex interfaces, product rules, models, and usage accounting can change. Verify them from official sources before relying on a route.
 - Automatic classification can be wrong. Keep human confirmation for sensitive or consequential actions.

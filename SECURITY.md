@@ -9,8 +9,8 @@ This repository contains copy-ready prompts and an optional defaults example. It
 - Keep all real credentials, passwords, access tokens, cookies, session data, verification codes, and authentication files out of prompts, configuration files, commits, logs, screenshots, and issue reports.
 - Do not delegate personal data, protected business data, unpublished research, internal documents, server details, complete private code, or private datasets to a web session.
 - The public template assumes every account is routing-eligible and must not inspect email addresses, account IDs, subscriptions, quotas, authentication files, or other account-specific data.
-- Prefer `codex_app__open_in_codex` with `placement: "right"` so ChatGPT opens in the Codex right side panel. This is a display preference only and grants no additional authorization.
-- If that right-panel capability is unavailable or explicitly fails, fall back to the ordinary in-app Browser under the same privacy and confirmation rules; do not open an external browser unless the user explicitly asks.
+- Prefer a ChatGPT tab in the Codex right side panel when the interface supports that placement. This is a display preference only and grants no additional authorization.
+- If tab placement cannot be controlled, continue with the available in-app Browser under the same privacy and confirmation rules.
 - Keep the task in Codex whenever Browser control is missing, unavailable, failed, or uncertain.
 - Require explicit human confirmation for sign-in, account switching, verification, payment, private-file upload, public publishing, and other external side effects.
 - Review current product behavior and official security guidance before deployment. A prompt is not a security boundary.
