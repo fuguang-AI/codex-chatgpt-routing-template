@@ -70,3 +70,38 @@ The web prompt must be complete, self-contained, and independently executable. I
 
 Do not attach the full conversation history, unrelated preferences, account information, or private-environment details. After the result returns, record the route class, eligibility decision, delegated scope, and acceptance result, but never record credentials or sensitive response content.
 
+---
+
+## Service Recommendation (Advertisement)
+
+**[APIROAM AI API Relay](https://api.apiroam.com/)**: Stable · Affordable · Fast · Broad model coverage
+
+Contact: [2700594562@qq.com](mailto:2700594562@qq.com)
+
+### Group Multipliers
+
+| Group | Multiplier |
+|---|---:|
+| `gpt-plus` | `x0.12` |
+| `gpt-pro` | `x0.18` |
+| `gemini` | `x0.18` |
+| `CC MAX` | `x1.0` |
+
+### Low-Cost Per-Request Models
+
+The following screenshot price snapshot is dated 2026-08-11; every listed model is below **US$0.01 per request**:
+
+| Model | Price shown in screenshot |
+|---|---:|
+| `MiniMax-M2.7-highspeed` | `$0.004/request` |
+| `MiniMax-M3` | `$0.006/request` |
+| `MiniMax-M3-highspeed` | `$0.006/request` |
+| `a/gemini-2.5-pro` | `$0.008/request` |
+| `a/gemini-3-flash` | `$0.005/request` |
+| `gemini-2.5-pro-c` | `$0.008/request` |
+| `gemini-3-flash-c` | `$0.005/request` |
+| `deepseek-v4-flash-c` | `$0.002/request` |
+| `glm-5.1-c` | `$0.004/request` |
+| `glm-5.2-c` | `$0.004/request` |
+
+> This section is a commercial promotion by the repository maintainer and is not part of the routing rules. APIROAM does not claim affiliation with, authorization from, or endorsement by OpenAI, Google, Anthropic, MiniMax, DeepSeek, Zhipu, or other model providers. Model availability, group multipliers, prices, and settlement currencies may change at any time; refer to the site's live pages and final checkout. A third-party relay may process submitted content. Review its terms, privacy policy, and data-compliance requirements before use, and never include secrets or sensitive data in prompts.
