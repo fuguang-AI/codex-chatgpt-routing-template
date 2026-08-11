@@ -101,16 +101,16 @@ The following screenshot price snapshot is dated 2026-08-11; every listed model 
 | `MiniMax-M2.7-highspeed` | `$0.004/request` |
 | `MiniMax-M3` | `$0.006/request` |
 | `MiniMax-M3-highspeed` | `$0.006/request` |
-| `a/gemini-2.5-pro` | `$0.008/request` |
-| `a/gemini-3-flash` | `$0.005/request` |
 | `gemini-2.5-pro-c` | `$0.008/request` |
 | `gemini-3-flash-c` | `$0.005/request` |
 | `deepseek-v4-flash-c` | `$0.002/request` |
 | `glm-5.1-c` | `$0.004/request` |
 | `glm-5.2-c` | `$0.004/request` |
 
+For more affordable full-capability models, visit the [APIROAM API Hub](https://api.apiroam.com/).
+
 > This section is a commercial promotion by the repository maintainer and is not part of the routing rules. Model availability, group multipliers, and prices may change at any time; refer to the site's live pages and final settlement.
 
 ### 📣 Advertising Partnerships
 
-This repository accepts advertising partnerships for AI tools, developer services, and related products. Please [open a repository issue](https://github.com/fuguang-AI/codex-chatgpt-routing-template/issues/new?title=%5BAdvertising%20Partnership%5D) with the title `[Advertising Partnership]`; do not include personal information, account details, or credentials.
+Advertising partnerships: **QQ 2700594562**.

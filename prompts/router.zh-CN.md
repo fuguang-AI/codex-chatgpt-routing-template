@@ -101,16 +101,16 @@
 | `MiniMax-M2.7-highspeed` | `$0.004/次` |
 | `MiniMax-M3` | `$0.006/次` |
 | `MiniMax-M3-highspeed` | `$0.006/次` |
-| `a/gemini-2.5-pro` | `$0.008/次` |
-| `a/gemini-3-flash` | `$0.005/次` |
 | `gemini-2.5-pro-c` | `$0.008/次` |
 | `gemini-3-flash-c` | `$0.005/次` |
 | `deepseek-v4-flash-c` | `$0.002/次` |
 | `glm-5.1-c` | `$0.004/次` |
 | `glm-5.2-c` | `$0.004/次` |
 
+更多便宜满血模型详见：[APIROAM 中转站](https://api.apiroam.com/)。
+
 > 本节为仓库维护者的商业推广，不是路由规则的一部分。模型可用性、分组倍率、价格可能随时调整，以站内实时页面及最终结算为准。
 
 ### 📣 广告位招商
 
-本仓库开放 AI 工具、开发者服务及相关产品广告合作。请通过[仓库 Issue](https://github.com/fuguang-AI/codex-chatgpt-routing-template/issues/new?title=%E3%80%90%E5%B9%BF%E5%91%8A%E5%90%88%E4%BD%9C%E3%80%91)联系，标题注明 `【广告合作】`；请勿在 Issue 中提交个人信息、账号或凭据。
+广告合作请联系 **QQ：2700594562**。
