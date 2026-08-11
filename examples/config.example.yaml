@@ -5,6 +5,9 @@ schema_version: 2
 routing:
   enabled: true
   assume_all_accounts_eligible: true
+  prefer_codex_right_panel: true
+  avoid_floating_browser_when_right_panel_available: true
+  allow_in_app_browser_fallback: true
   require_browser_capability: true
   local_only_when_browser_unavailable: true
   split_mixed_tasks: true
